@@ -1,0 +1,7 @@
+#!/bin/bash
+SHADER_FILE=$(find ./shaders/ -name "*.glsl" | fzf)
+if [ -z "$SHADER_FILE" ]; then
+    echo "No shader file selected. Exiting."
+    exit 1
+fi
+./xcomp --backend glx --force-win-blend --glx-fshader-win "$(cat "$SHADER_FILE")"
